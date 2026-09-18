@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:islami_c20/ui/hadeth_details/screen/hadeth_details_screen.dart';
 import 'package:islami_c20/ui/home/screen/home_screen.dart';
 
 import 'core/resources/routes_manager.dart';
@@ -16,7 +17,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner:false,
       routes: {
-        RoutesManager.homeRouteName:(context)=>HomeScreen()
+        RoutesManager.homeRouteName:(context)=>HomeScreen(),
+        RoutesManager.hadethDetailRouteName:(context)=>HadethDetailsScreen(),
       },
       initialRoute: RoutesManager.homeRouteName,
     );
