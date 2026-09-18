@@ -11,19 +11,25 @@ class SuraDetailsScreen extends StatefulWidget {
 }
 
 class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
+  SuraModel? suraModel;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      suraModel= ModalRoute.of(context)?.settings.arguments as SuraModel;
+      readFile(suraModel?.suraNumber??0);
+    },);
+  }
   @override
   Widget build(BuildContext context) {
-    SuraModel suraModel = ModalRoute.of(context)?.settings.arguments as SuraModel;
-    if(suraVerses.isEmpty){
-      readFile(suraModel.suraNumber); // non blocking
-    }
       //non blocking
     return Scaffold(
       backgroundColor: ColorsManager.blackColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         centerTitle: true,
-        title: Text(suraModel.suraNameEn,style: TextStyle(
+        title: Text(suraModel?.suraNameEn??"",style: TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.w700,
           color: ColorsManager.goldColor
@@ -50,7 +56,7 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Image.asset(AssetsManager.leftCorner),
-                      Text(suraModel.suraNameAr,style: TextStyle(
+                      Text(suraModel?.suraNameAr??"",style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.w700,
                           color: ColorsManager.goldColor
